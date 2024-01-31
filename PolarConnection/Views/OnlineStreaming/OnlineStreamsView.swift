@@ -9,8 +9,39 @@ struct OnlineStreamsView: View {
     @State private var urlToShare: IdentifiableURL?
     
     func shareURL(url: URL) {
-        urlToShare = IdentifiableURL(url: url)
+        // Assuming you have a function to get the device ID
+        let deviceId = bleSdkManager.get_connected_device_Id()
+
+        // Get the original file name from the URL
+        let originalFileName = url.lastPathComponent
+
+        // Extract the file extension
+//        let fileExtension = url.pathExtension
+
+        // Create the new file name with device ID and original file name
+        let newFileName = "\(deviceId)_\(originalFileName)"
+
+        // Create the destination URL with the new file name
+        let destinationURL = url.deletingLastPathComponent().appendingPathComponent(newFileName)
+
+        do {
+            // Read the contents of the original file
+            let fileContents = try Data(contentsOf: url)
+
+            // Write the contents to the new file
+            try fileContents.write(to: destinationURL)
+            
+            // Update the urlToShare property with the modified URL
+            urlToShare = IdentifiableURL(url: destinationURL)
+        } catch {
+            urlToShare = IdentifiableURL(url: url)
+        }
     }
+
+//    func shareURL(url: URL) {
+//            urlToShare = IdentifiableURL(url: url)
+//        }
+
     
     var body: some View {
         if case .connected = bleSdkManager.deviceConnectionState,
