@@ -23,10 +23,12 @@ struct ContentView: View {
     @EnvironmentObject private var bleSdkManager: PolarBleSdkManager
     @State private var selectedTab: SelectedAction = .online
     @State private var isSearchingDevices = false
+    @State var deviceId: Int
     
     var body: some View {
+        
         VStack {
-            Text("Polar BLE SDK example app")
+            Text("Device \(deviceId)")
                 .bold()
             VStack(spacing: 10) {
                 if !bleSdkManager.isBluetoothOn {
@@ -178,7 +180,7 @@ struct ContentView_Previews: PreviewProvider {
     
     static var previews: some View {
         ForEach(["iPhone 8", "iPAD Pro (12.9-inch)"], id: \.self) { deviceName in
-            ContentView()
+            ContentView(deviceId: 1)
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)
                 .environmentObject(polarBleSdkManager)

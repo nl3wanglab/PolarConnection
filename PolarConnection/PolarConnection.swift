@@ -8,7 +8,7 @@ struct PolarConnection: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(deviceId: 1)
                 .environmentObject(bleSdkManager)
         }
     }
