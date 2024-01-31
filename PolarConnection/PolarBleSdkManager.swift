@@ -20,7 +20,7 @@ class PolarBleSdkManager : ObservableObject {
     )
     
     // TODO replace the device id with your device ID or use the auto connect to when connecting to device
-    private static let deviceId = "C015D22B"
+    private static let deviceId = "C16CE528"
     
     @Published var isBluetoothOn: Bool
     @Published var isBroadcastListenOn: Bool = false
