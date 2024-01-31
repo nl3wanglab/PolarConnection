@@ -60,6 +60,8 @@ class PolarBleSdkManager : ObservableObject {
     
     private var searchDevicesTask: Task<Void, Never>? = nil
     
+    private var connected_device_name = ""
+    
     init() {
         self.isBluetoothOn = api.isBlePowered
         
@@ -109,8 +111,14 @@ class PolarBleSdkManager : ObservableObject {
             } catch let err {
                 NSLog("Failed to connect to \(deviceId). Reason \(err)")
             }
+            connected_device_name = deviceId
         }
     }
+    
+    func get_connected_device_Id() -> String {
+        return connected_device_name
+    }
+    
     
     func disconnectFromDevice() {
         if case .connected(let deviceId) = deviceConnectionState {
