@@ -54,8 +54,8 @@ struct ContentView: View {
                             .buttonStyle(PrimaryButtonStyle(buttonState: getConnectButtonState()))
                     }
                     
-                    Button("Auto Connect", action: { bleSdkManager.autoConnect()})
-                        .buttonStyle(PrimaryButtonStyle(buttonState: getAutoConnectButtonState()))
+                    // Button("Auto Connect", action: { bleSdkManager.autoConnect()})
+                        // .buttonStyle(PrimaryButtonStyle(buttonState: getAutoConnectButtonState()))
                     
                     VStack {
                         Button("Search devices", action: { self.isSearchingDevices = true})

@@ -26,12 +26,12 @@ struct OfflineRecordingListView: View {
             .task {
                 await bleSdkManager.listOfflineRecordings()
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .edgesIgnoringSafeArea(.all)
-                .navigationBarTitle("")
-                .navigationBarHidden(true)
+            //.frame(maxWidth: .infinity, maxHeight: .infinity)
+            //.edgesIgnoringSafeArea(.all)
+            //    .navigationBarTitle("")
+            //    .navigationBarHidden(true)
             
-        }.navigationViewStyle(StackNavigationViewStyle())
+        }//.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
