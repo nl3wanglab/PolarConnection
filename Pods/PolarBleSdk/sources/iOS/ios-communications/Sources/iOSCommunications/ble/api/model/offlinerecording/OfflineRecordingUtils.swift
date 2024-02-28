@@ -4,13 +4,14 @@ import Foundation
 class OfflineRecordingUtils {
         
     static func mapOfflineRecordingFileNameToMeasurementType(fileName: String) throws -> PmdMeasurementType {
-        switch(fileName) {
-        case "ACC.REC": return PmdMeasurementType.acc
-        case "GYRO.REC": return PmdMeasurementType.gyro
-        case "MAG.REC": return PmdMeasurementType.mgn
-        case "PPG.REC": return PmdMeasurementType.ppg
-        case "PPI.REC": return PmdMeasurementType.ppi
-        case "HR.REC": return PmdMeasurementType.offline_hr
+        let baseFileName = fileName.components(separatedBy: CharacterSet.decimalDigits).first ?? fileName
+        switch(baseFileName) {
+        case "ACC": return .acc
+        case "GYRO": return .gyro
+        case "MAG": return .mgn
+        case "PPG": return .ppg
+        case "PPI": return .ppi
+        case "HR": return .offline_hr
         default: throw BleGattException.gattDataError(description: "Unknown offline file \(fileName)")
         }
     }
