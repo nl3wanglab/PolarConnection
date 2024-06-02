@@ -21,6 +21,7 @@ enum SelectedAction: String, CaseIterable {
 
 struct ContentView: View {
     @EnvironmentObject private var bleSdkManager: PolarBleSdkManager
+    @EnvironmentObject private var deviceManager: PolarDeviceManager
     @State private var selectedTab: SelectedAction = .online
     @State private var isSearchingDevices = false
     @State var deviceId: Int
@@ -42,16 +43,27 @@ struct ContentView: View {
                         .buttonStyle(PrimaryButtonStyle(buttonState: getBroadcastButtonState()))
                     
                     switch bleSdkManager.deviceConnectionState {
-                    case .disconnected(let deviceId):
-                        Button("Connect \(deviceId)", action: {bleSdkManager.connectToDevice()})
-                            .buttonStyle(PrimaryButtonStyle(buttonState: getConnectButtonState()))
-                    case .connecting(let deviceId):
-                        Button("Connecting \(deviceId)", action: {})
-                            .buttonStyle(PrimaryButtonStyle(buttonState: getConnectButtonState()))
-                            .disabled(true)
-                    case .connected(let deviceId):
-                        Button("Disconnect \(deviceId)", action: {bleSdkManager.disconnectFromDevice()})
-                            .buttonStyle(PrimaryButtonStyle(buttonState: getConnectButtonState()))
+                    case .disconnected(let managerDeviceId):
+                        Button("Connect \(managerDeviceId)") {
+                            let deviceIdString = String(managerDeviceId)
+                            bleSdkManager.deviceId = deviceIdString
+                            bleSdkManager.connectToDevice(areSameIds: deviceManager.areDeviceIdsSame(), isConnectedOrConnecting: deviceManager.isConnectedOrConnecting())
+                        }
+                        .buttonStyle(PrimaryButtonStyle(buttonState: getConnectButtonState()))
+                    case .connecting(let managerDeviceId):
+                        Button("Connecting \(managerDeviceId)") {
+                            let deviceIdString = String(managerDeviceId)
+                            bleSdkManager.deviceId = deviceIdString
+                        }
+                        .buttonStyle(PrimaryButtonStyle(buttonState: getConnectButtonState()))
+                        .disabled(true)
+                    case .connected(let managerDeviceId):
+                        Button("Disconnect \(managerDeviceId)") {
+                            let deviceIdString = String(managerDeviceId)
+                            bleSdkManager.deviceId = deviceIdString
+                            bleSdkManager.disconnectFromDevice()
+                        }
+                        .buttonStyle(PrimaryButtonStyle(buttonState: getConnectButtonState()))
                     }
                     
                     // Button("Auto Connect", action: { bleSdkManager.autoConnect()})

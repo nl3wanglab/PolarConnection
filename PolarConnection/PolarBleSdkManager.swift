@@ -9,23 +9,23 @@ import CoreBluetooth
 class PolarBleSdkManager : ObservableObject {
     // NOTICE this example utilises all available features
     private var api = PolarBleApiDefaultImpl.polarImplementation(DispatchQueue.main,
-                                                                 features: [PolarBleSdkFeature.feature_hr,
-                                                                            PolarBleSdkFeature.feature_polar_sdk_mode,
-                                                                            PolarBleSdkFeature.feature_battery_info,
-                                                                            PolarBleSdkFeature.feature_device_info,
-                                                                            PolarBleSdkFeature.feature_polar_online_streaming,
-                                                                            PolarBleSdkFeature.feature_polar_offline_recording,
-                                                                            PolarBleSdkFeature.feature_polar_device_time_setup,
-                                                                            PolarBleSdkFeature.feature_polar_h10_exercise_recording]
+        features: [PolarBleSdkFeature.feature_hr,
+                PolarBleSdkFeature.feature_polar_sdk_mode,
+                PolarBleSdkFeature.feature_battery_info,
+                PolarBleSdkFeature.feature_device_info,
+                PolarBleSdkFeature.feature_polar_online_streaming,
+                PolarBleSdkFeature.feature_polar_offline_recording,
+                PolarBleSdkFeature.feature_polar_device_time_setup,
+                PolarBleSdkFeature.feature_polar_h10_exercise_recording]
     )
     
     // TODO replace the device id with your device ID or use the auto connect to when connecting to device
-    private static let deviceId = "C16CE528"
-    
+        
     @Published var isBluetoothOn: Bool
     @Published var isBroadcastListenOn: Bool = false
     
-    @Published var deviceConnectionState: DeviceConnectionState = DeviceConnectionState.disconnected(deviceId)
+    var deviceId: String
+    @Published var deviceConnectionState: DeviceConnectionState
     
     @Published var deviceSearch: DeviceSearch = DeviceSearch()
     
@@ -63,6 +63,8 @@ class PolarBleSdkManager : ObservableObject {
     private var connected_device_name = ""
     
     init() {
+        self.deviceId = "XXXXXXXX"
+        self.deviceConnectionState = .disconnected(deviceId)
         self.isBluetoothOn = api.isBlePowered
         
         api.polarFilter(true)
@@ -103,15 +105,19 @@ class PolarBleSdkManager : ObservableObject {
             }
         }
     }
+
+    var otherManager: PolarBleSdkManager?
     
-    func connectToDevice() {
-        if case .disconnected(let deviceId) = deviceConnectionState {
+    func connectToDevice(areSameIds: Bool, isConnectedOrConnecting: Bool) {
+        if areSameIds && isConnectedOrConnecting {
+            NSLog("A device with the same ID is already connected or connecting.")
+        } else {
             do {
                 try api.connectToDevice(deviceId)
-            } catch let err {
-                NSLog("Failed to connect to \(deviceId). Reason \(err)")
+                connected_device_name = deviceId
+            } catch {
+                NSLog("Failed to connect to device \(deviceId). Reason: \(error)")
             }
-            connected_device_name = deviceId
         }
     }
     
@@ -182,7 +188,7 @@ class PolarBleSdkManager : ObservableObject {
     }
     
     func getOnlineStreamSettings(feature: PolarBleSdk.PolarDeviceDataType) {
-        if case .connected(let deviceId) = deviceConnectionState {
+        if case .connected(let deviceId) = self.deviceConnectionState {
             NSLog("Online stream settings fetch for \(feature)")
             api.requestStreamSettings(deviceId, feature: feature)
                 .observe(on: MainScheduler.instance)
@@ -208,12 +214,12 @@ class PolarBleSdkManager : ObservableObject {
                     }
                 }.disposed(by: disposeBag)
         } else {
-            NSLog("Online stream settings request failed. Device is not connected \(deviceConnectionState)")
+            NSLog("Online stream settings request failed. Device is not connected \(self.deviceConnectionState)")
         }
     }
     
     func getOfflineRecordingSettings(feature: PolarBleSdk.PolarDeviceDataType) {
-        if case .connected(let deviceId) = deviceConnectionState {
+        if case .connected(let deviceId) = self.deviceConnectionState {
             NSLog("Offline recording settings fetch for \(feature)")
             api.requestOfflineRecordingSettings(deviceId, feature: feature)
                 .observe(on: MainScheduler.instance)
@@ -236,7 +242,7 @@ class PolarBleSdkManager : ObservableObject {
                     }
                 }.disposed(by: disposeBag)
         } else {
-            NSLog("Offline recording settings request failed. Device is not connected \(deviceConnectionState)")
+            NSLog("Offline recording settings request failed. Device is not connected \(self.deviceConnectionState)")
         }
     }
     
@@ -273,7 +279,7 @@ class PolarBleSdkManager : ObservableObject {
     }
     
     func listOfflineRecordings() async {
-        if case .connected(let deviceId) = deviceConnectionState {
+        if case .connected(let deviceId) = self.deviceConnectionState {
             
             Task { @MainActor in
                 self.offlineRecordingEntries.entries.removeAll()
@@ -301,7 +307,7 @@ class PolarBleSdkManager : ObservableObject {
     }
     
     func getOfflineRecordingStatus() async {
-        if case .connected(let deviceId) = deviceConnectionState {
+        if case .connected(let deviceId) = self.deviceConnectionState {
             NSLog("getOfflineRecordingStatus")
             api.getOfflineRecordingStatus(deviceId)
                 .observe(on: MainScheduler.instance)
@@ -319,7 +325,7 @@ class PolarBleSdkManager : ObservableObject {
     }
     
     func removeOfflineRecording(offlineRecordingEntry: PolarOfflineRecordingEntry) async {
-        if case .connected(let deviceId) = deviceConnectionState {
+        if case .connected(let deviceId) = self.deviceConnectionState {
             do {
                 NSLog("start offline recording removal")
                 let _: Void = try await api.removeOfflineRecord(deviceId, entry: offlineRecordingEntry).value
@@ -334,7 +340,7 @@ class PolarBleSdkManager : ObservableObject {
     }
     
     func getOfflineRecording(offlineRecordingEntry: PolarOfflineRecordingEntry) async {
-        if case .connected(let deviceId) = deviceConnectionState {
+        if case .connected(let deviceId) = self.deviceConnectionState {
             Task { @MainActor in
                 self.offlineRecordingData.loadState = OfflineRecordingDataLoadingState.inProgress
             }
@@ -414,7 +420,7 @@ class PolarBleSdkManager : ObservableObject {
     }
     
     func offlineRecordingStart(feature: PolarDeviceDataType, settings: RecordingSettings? = nil) {
-        if case .connected(let deviceId) = deviceConnectionState {
+        if case .connected(let deviceId) = self.deviceConnectionState {
             var logString:String = "Request offline recording \(feature) start with settings: "
             
             var polarSensorSettings:[PolarSensorSetting.SettingType : UInt32] = [:]
