@@ -17,9 +17,7 @@ public class BleRssiFilter{
                 sortedRssis.addObjects(from: rssiValues as [AnyObject])
                 let highestToLowest = NSSortDescriptor(key: "self", ascending: false)
                 sortedRssis.sort(using: [highestToLowest])
-                if let medianNumber = sortedRssis.object(at: 3) as? NSNumber {
-                    self.medianRssi = medianNumber.int32Value
-                }
+                self.medianRssi = (sortedRssis.object(at: 3) as! NSNumber).int32Value
                 self.rssiValues.removeObject(at: 0)
             } else {
                 self.medianRssi = rssi
