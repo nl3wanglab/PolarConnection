@@ -8,6 +8,14 @@ struct OnlineStreamsView: View {
     @EnvironmentObject private var bleSdkManager: PolarBleSdkManager
     @State private var urlToShare: IdentifiableURL?
     
+    func isHRData(contents: String) -> Bool {
+        let lines = contents.split(separator: "\n")
+        guard let header = lines.first else {
+            return false
+        }
+        return header == "HR CONTACT_SUPPORTED CONTACT_STATUS RR_AVAILABLE RR(ms)"
+    }
+    
     func shareURL(url: URL) {
         // Assuming you have a function to get the device ID
         let deviceId = bleSdkManager.get_connected_device_Id()
@@ -27,6 +35,17 @@ struct OnlineStreamsView: View {
         do {
             // Read the contents of the original file
             let fileContents = try Data(contentsOf: url)
+            
+            if let fileContentsString = String(data: fileContents, encoding: .utf8) {
+                NSLog("File contents: \(fileContentsString)")
+
+                if isHRData(contents: fileContentsString) {
+                    NSLog("The file contains HR data.")
+                    // Proceed with parsing and other operations for HR data
+                }
+            } else {
+                NSLog("Unable to convert file contents to string")
+            }
 
             // Write the contents to the new file
             try fileContents.write(to: destinationURL)

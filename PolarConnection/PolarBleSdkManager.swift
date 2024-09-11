@@ -733,6 +733,8 @@ class PolarBleSdkManager : ObservableObject {
             }
             
             let logFile: (url: URL, fileHandle: FileHandle)? = openOnlineStreamLogFile(type: .hr)
+                        
+            let startTime = Date()
             
             onlineStreamingDisposables[.hr] = api.startHrStreaming(deviceId)
                 .do(onDispose: {
@@ -750,7 +752,9 @@ class PolarBleSdkManager : ObservableObject {
                             self.writeOnlineStreamLogFile(fileHandle, data)
                         }
                         
-                        NSLog("HR    BPM: \(data[0].hr) rrs: \(data[0].rrsMs) rrAvailable: \(data[0].rrAvailable) contact status: \(data[0].contactStatus) contact supported: \(data[0].contactStatusSupported)")
+                        let timeDifference = Date().timeIntervalSince(startTime) * 1000
+                        NSLog("HR-BPM: \(data[0].hr) Time: \(timeDifference)")
+                        
                     case .error(let err):
                         NSLog("Hr stream failed: \(err)")
                         if let fileHandle = logFile?.fileHandle {
