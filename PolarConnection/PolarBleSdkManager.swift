@@ -749,14 +749,21 @@ class PolarBleSdkManager : ObservableObject {
                     switch e {
                     case .next(let data):
                         if let fileHandle = logFile?.fileHandle {
-                            let timeDifference = Date().timeIntervalSince(startTime) * 1000
-                            let logMessage = "HR-BPM: \(data[0].hr) Time: \(timeDifference)"
+                            let timeDiff = (Int) (Date().timeIntervalSince(startTime) * 1000)
                             
-                            // Log to the console
+                            let hrData: PolarHrData = [
+                                (hr: data[0].hr,
+                                 rrsMs: data[0].rrsMs,
+                                 rrAvailable: data[0].rrAvailable,
+                                 contactStatus: data[0].contactStatus,
+                                 contactStatusSupported: data[0].contactStatusSupported,
+                                 timeDifference: timeDiff)
+                            ]
+                            
+                            self.writeOnlineStreamLogFile(fileHandle, hrData)
+                            
+                            let logMessage = "HR-BPM: \(data[0].hr) Time: \(timeDiff)"
                             NSLog(logMessage)
-                            
-                            // Write the same message to the log file
-                            self.writeOnlineStreamLogFile(fileHandle, logMessage)
                         }
                         
                         let timeDifference = Date().timeIntervalSince(startTime) * 1000
@@ -1091,7 +1098,8 @@ class PolarBleSdkManager : ObservableObject {
         case .magnetometer:
             result =  "TIMESTAMP X(Gauss) Y(Gauss) Z(Gauss)\n"
         case .hr:
-            result = "HR CONTACT_SUPPORTED CONTACT_STATUS RR_AVAILABLE RR(ms)\n"
+            //result = "HR CONTACT_SUPPORTED CONTACT_STATUS RR_AVAILABLE RR(ms)\n"
+            result = "HR(BPM) TIME(MS)\n"
         }
         return result
     }
@@ -1115,7 +1123,9 @@ class PolarBleSdkManager : ObservableObject {
             result += polarPpiData.samples.map{ "\($0.ppInMs) \($0.hr) \($0.ppErrorEstimate) \($0.blockerBit) \($0.skinContactSupported) \($0.skinContactStatus)" }.joined(separator: "\n")
             
         case let polarHrData as PolarHrData:
-            result += polarHrData.map{ "\($0.hr) \($0.contactStatusSupported) \($0.contactStatus) \($0.rrAvailable) \($0.rrsMs.map { String($0) }.joined(separator: " "))" }.joined(separator: "\n")
+            result += polarHrData.map{ "\($0.hr) \($0.timeDifference)" }.joined(separator: "\n")
+            
+            //result += polarHrData.map{ "\($0.hr) \($0.contactStatusSupported) \($0.contactStatus) \($0.rrAvailable) \($0.rrsMs.map { String($0) }.joined(separator: " ")) \($0.timeDifference)" }.joined(separator: "\n")
             
         default:
             result = "Data type not supported"
@@ -1135,7 +1145,7 @@ class PolarBleSdkManager : ObservableObject {
             let currentDate = Date()
             let dateString = dateFormatter.string(from: currentDate)
             
-            let fileName = type.stringValue + "_" + dateString + ".txt"
+            let fileName = type.stringValue + "_" + deviceId + "_" + dateString + ".txt"
             let fileURL = documentsDirectory.appendingPathComponent(fileName)
             
             do {

@@ -1499,7 +1499,12 @@ extension PolarBleApiImpl: PolarBleApi  {
             }
             return bleHrClient.observeHrNotifications(true)
                 .map {
-                    return [(hr: UInt8($0.hr), rrsMs: $0.rrsMs, rrAvailable: $0.rrPresent, contactStatus: $0.sensorContact, contactStatusSupported: $0.sensorContactSupported)]
+                    return [(hr: UInt8($0.hr),
+                             rrsMs: $0.rrsMs,
+                             rrAvailable: $0.rrPresent,
+                             contactStatus: $0.sensorContact,
+                             contactStatusSupported: $0.sensorContactSupported,
+                             timeDifference: 0)]
                 }
         } catch let err {
             return Observable.error(err)
@@ -1851,9 +1856,9 @@ private extension PpiData {
 
 private extension OfflineHrData {
     func mapToPolarData() -> PolarHrData {
-        var polarSamples: [(hr: UInt8, rrsMs: [Int], rrAvailable: Bool, contactStatus: Bool, contactStatusSupported: Bool)] = []
+        var polarSamples: [(hr: UInt8, rrsMs: [Int], rrAvailable: Bool, contactStatus: Bool, contactStatusSupported: Bool, timeDifference: Int)] = []
         for sample in self.samples {
-            polarSamples.append((hr: sample.hr, rrsMs:[], rrAvailable: false, contactStatus: false, contactStatusSupported: false))
+            polarSamples.append((hr: sample.hr, rrsMs:[], rrAvailable: false, contactStatus: false, contactStatusSupported: false, timeDifference: 0))
         }
         return polarSamples
     }

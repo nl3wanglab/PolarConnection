@@ -66,7 +66,7 @@ public typealias PolarHrBroadcastData = (deviceInfo: PolarDeviceInfo, hr: UInt8,
 ///     - contactStatus true if the sensor has contact (with a measurable surface e.g. skin)
 ///     - contactStatusSupported true if the sensor supports contact status
 ///     - rrAvailable true if RR data is available.
-public typealias PolarHrData = [(hr: UInt8, rrsMs: [Int], rrAvailable: Bool, contactStatus: Bool, contactStatusSupported: Bool)]
+public typealias PolarHrData = [(hr: UInt8, rrsMs: [Int], rrAvailable: Bool, contactStatus: Bool, contactStatusSupported: Bool, timeDifference: Int)]
 
 /// Polar Ecg data
 ///
