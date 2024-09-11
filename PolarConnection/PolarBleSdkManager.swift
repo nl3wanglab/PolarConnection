@@ -749,7 +749,14 @@ class PolarBleSdkManager : ObservableObject {
                     switch e {
                     case .next(let data):
                         if let fileHandle = logFile?.fileHandle {
-                            self.writeOnlineStreamLogFile(fileHandle, data)
+                            let timeDifference = Date().timeIntervalSince(startTime) * 1000
+                            let logMessage = "HR-BPM: \(data[0].hr) Time: \(timeDifference)"
+                            
+                            // Log to the console
+                            NSLog(logMessage)
+                            
+                            // Write the same message to the log file
+                            self.writeOnlineStreamLogFile(fileHandle, logMessage)
                         }
                         
                         let timeDifference = Date().timeIntervalSince(startTime) * 1000
