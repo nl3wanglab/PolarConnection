@@ -820,7 +820,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PolarConnection/Preview Content\"";
-				DEVELOPMENT_TEAM = MN4HSCJGYS;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PolarConnection/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -828,7 +828,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nl3wanglab.iosBleSdkExample.Nick;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nl3wanglab.iosBleSdkExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -951,7 +951,7 @@
 				CODE_SIGN_ENTITLEMENTS = PolarConnectionMac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PolarConnection/Preview Content\"";
-				DEVELOPMENT_TEAM = MN4HSCJGYS;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "PolarConnectionMac-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -959,7 +959,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nl3wanglab.iosBleSdkExample.Nick;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nl3wanglab.iosBleSdkExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
