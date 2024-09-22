@@ -20,12 +20,13 @@ enum SelectedAction: String, CaseIterable {
 }
 
 struct ContentView: View {
-    @EnvironmentObject private var bleSdkManager: PolarBleSdkManager
+    //@EnvironmentObject private var bleSdkManager: PolarBleSdkManager
     @EnvironmentObject private var deviceManager: PolarDeviceManager
     @State private var selectedTab: SelectedAction = .online
     @State private var isSearchingDevices = false
     @State var deviceId: Int
-    
+    @State var bleSdkManager: PolarBleSdkManager
+        
     var body: some View {
         
         VStack {
@@ -77,7 +78,7 @@ struct ContentView: View {
                         isPresented: $isSearchingDevices,
                         onDismiss: { bleSdkManager.stopDevicesSearch()}
                     ) {
-                        DeviceSearchView(isPresented: self.$isSearchingDevices)
+                        DeviceSearchView(bleSdkManager: bleSdkManager, isPresented: self.$isSearchingDevices)
                     }
                 }.disabled(!bleSdkManager.isBluetoothOn)
                 
@@ -87,7 +88,7 @@ struct ContentView: View {
                     }
                 }.pickerStyle(SegmentedPickerStyle())
                     .padding(.horizontal)
-                OperationModesTabView(chosenActionView: selectedTab)
+                OperationModesTabView(bleSdkManager: bleSdkManager, chosenActionView: selectedTab)
                 
             }.frame(maxWidth: .infinity)
             Spacer()
@@ -149,19 +150,20 @@ struct ContentView: View {
 }
 
 struct OperationModesTabView: View {
-    @EnvironmentObject private var bleSdkManager: PolarBleSdkManager
+    @EnvironmentObject private var deviceManager: PolarDeviceManager
+    let bleSdkManager: PolarBleSdkManager
     var chosenActionView: SelectedAction
     
     var body: some View {
         switch chosenActionView {
         case .online:
-            OnlineStreamsView()
+            OnlineStreamsView(bleSdkManager: bleSdkManager)
         case .offline:
-            OfflineRecordingView()
+            OfflineRecordingView(bleSdkManager: bleSdkManager)
         case .h10Exercise:
-            H10ExerciseView()
+            H10ExerciseView(bleSdkManager: bleSdkManager)
         case .settings:
-            DeviceSettingsView()
+            DeviceSettingsView(bleSdkManager: bleSdkManager)
         }
     }
 }
@@ -192,7 +194,8 @@ struct ContentView_Previews: PreviewProvider {
     
     static var previews: some View {
         ForEach(["iPhone 8", "iPAD Pro (12.9-inch)"], id: \.self) { deviceName in
-            ContentView(deviceId: 1)
+            ContentView(deviceId:
+             1, bleSdkManager: polarBleSdkManager)
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)
                 .environmentObject(polarBleSdkManager)

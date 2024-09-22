@@ -573,7 +573,7 @@
 		7DCE2CD1C6ACC5C5D519C84B6DAB9A56 /* MathUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MathUtils.swift; path = Sources/SwiftProtobuf/MathUtils.swift; sourceTree = "<group>"; };
 		7EC1F00562D61A3F0AFFC2E37323600E /* RetryWhen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RetryWhen.swift; path = RxSwift/Observables/RetryWhen.swift; sourceTree = "<group>"; };
 		7F68D322C470EC21E773FBB5BEDC6073 /* DoubleParser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DoubleParser.swift; path = Sources/SwiftProtobuf/DoubleParser.swift; sourceTree = "<group>"; };
-		809C5FAB588354C9BA37DC3EAB8CB45C /* RxSwift */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RxSwift; path = RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		809C5FAB588354C9BA37DC3EAB8CB45C /* RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8175322F183E67AAD5958FCDDF541241 /* BinaryEncodingSizeVisitor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BinaryEncodingSizeVisitor.swift; path = Sources/SwiftProtobuf/BinaryEncodingSizeVisitor.swift; sourceTree = "<group>"; };
 		81BD3F734930A8985F41CDCF3BFB0461 /* PolarTimeUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PolarTimeUtils.swift; path = "sources/iOS/ios-communications/Sources/PolarBleSdk/sdk/impl/utils/PolarTimeUtils.swift"; sourceTree = "<group>"; };
 		824731E90D407B0B7BFCB3E8BFB906A3 /* RxSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = RxSwift.modulemap; sourceTree = "<group>"; };
@@ -604,7 +604,7 @@
 		92F1FDDCA9BE66D948A1A71DBB7A67DD /* Error.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Error.swift; path = RxSwift/Observables/Error.swift; sourceTree = "<group>"; };
 		93B95D47CACD657567EF8E2BB921FB34 /* Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Rx.swift; path = RxSwift/Rx.swift; sourceTree = "<group>"; };
 		93F758DFB0E5EDD2956053FAFC00FBCF /* PriorityQueue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PriorityQueue.swift; path = Platform/DataStructures/PriorityQueue.swift; sourceTree = "<group>"; };
-		943D347E61A2E181A4FA2CA894307B6E /* SwiftProtobuf */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftProtobuf; path = SwiftProtobuf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		943D347E61A2E181A4FA2CA894307B6E /* SwiftProtobuf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftProtobuf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94BAB206D851CA1079A26713639983EB /* SwiftProtobuf-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftProtobuf-umbrella.h"; sourceTree = "<group>"; };
 		95920FBAB0E00F042614225814D8DA43 /* BinaryDecoder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BinaryDecoder.swift; path = Sources/SwiftProtobuf/BinaryDecoder.swift; sourceTree = "<group>"; };
 		972026185C9011C2D13398A8D310CAAC /* PmdRecordingType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PmdRecordingType.swift; path = "sources/iOS/ios-communications/Sources/iOSCommunications/ble/api/model/gatt/client/pmd/PmdRecordingType.swift"; sourceTree = "<group>"; };
@@ -622,7 +622,7 @@
 		9CAB0CF52DB4DE531F99DCB32BA95858 /* StartWith.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StartWith.swift; path = RxSwift/Observables/StartWith.swift; sourceTree = "<group>"; };
 		9CE513EE0DC40A025E7690C74CA848B9 /* InvocableScheduledItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InvocableScheduledItem.swift; path = RxSwift/Schedulers/Internal/InvocableScheduledItem.swift; sourceTree = "<group>"; };
 		9D1765F7B5948E5CBD7AECD77745A7EF /* JSONDecodingError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JSONDecodingError.swift; path = Sources/SwiftProtobuf/JSONDecodingError.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9DCEBAD10AAFEDEF654C996122C78239 /* WireFormat.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WireFormat.swift; path = Sources/SwiftProtobuf/WireFormat.swift; sourceTree = "<group>"; };
 		9E1C7391A47A53EBF92F314B60B072B1 /* empty.pb.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = empty.pb.swift; path = Sources/SwiftProtobuf/empty.pb.swift; sourceTree = "<group>"; };
 		9E5D801DB5BDB763839D0EF8F00D7E9D /* PolarOfflineRecordingTriggerMode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PolarOfflineRecordingTriggerMode.swift; path = "sources/iOS/ios-communications/Sources/PolarBleSdk/sdk/api/model/PolarOfflineRecordingTriggerMode.swift"; sourceTree = "<group>"; };
@@ -662,7 +662,7 @@
 		BDF54070588FE3703FEA0B1FF174CB6D /* BlePfcClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BlePfcClient.swift; path = "sources/iOS/ios-communications/Sources/iOSCommunications/ble/api/model/gatt/client/BlePfcClient.swift"; sourceTree = "<group>"; };
 		BE774D4B125993AFDDE810C15338BC34 /* duration.pb.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = duration.pb.swift; path = Sources/SwiftProtobuf/duration.pb.swift; sourceTree = "<group>"; };
 		BF714F18CC73E48D23A5CE33452AE23C /* SelectiveVisitor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SelectiveVisitor.swift; path = Sources/SwiftProtobuf/SelectiveVisitor.swift; sourceTree = "<group>"; };
-		BFC478F66C7DB9569C93101B7A8CF611 /* Pods-PolarConnection */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-PolarConnection"; path = Pods_PolarConnection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFC478F66C7DB9569C93101B7A8CF611 /* Pods_PolarConnection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PolarConnection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C00BCACCADF1ADA3FA5F28725202DC79 /* BlePolarDeviceIdUtility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BlePolarDeviceIdUtility.swift; path = "sources/iOS/ios-communications/Sources/iOSCommunications/ble/api/model/polar/BlePolarDeviceIdUtility.swift"; sourceTree = "<group>"; };
 		C1259C338EFE371B09BFCFE09373081C /* ObservableType+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ObservableType+Extensions.swift"; path = "RxSwift/ObservableType+Extensions.swift"; sourceTree = "<group>"; };
 		C5780C975A40971AE4CA6303285E4953 /* CombineLatest+Collection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CombineLatest+Collection.swift"; path = "RxSwift/Observables/CombineLatest+Collection.swift"; sourceTree = "<group>"; };
@@ -681,7 +681,7 @@
 		CC1D14195AF2BA074F8AD34B14181051 /* PolarSensorSetting.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PolarSensorSetting.swift; path = "sources/iOS/ios-communications/Sources/PolarBleSdk/sdk/api/model/PolarSensorSetting.swift"; sourceTree = "<group>"; };
 		CC912E87FDE935B0D059D3F3BB34A22E /* CBScanningProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CBScanningProtocol.swift; path = "sources/iOS/ios-communications/Sources/iOSCommunications/ble/endpoints/corebluetooth/central/CBScanningProtocol.swift"; sourceTree = "<group>"; };
 		CC983FB36298BC6279B7AB0A9CE9506B /* Infallible+CombineLatest+arity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Infallible+CombineLatest+arity.swift"; path = "RxSwift/Traits/Infallible/Infallible+CombineLatest+arity.swift"; sourceTree = "<group>"; };
-		CCEE745F7448B03439BDC92BA2C16199 /* PolarBleSdk */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PolarBleSdk; path = PolarBleSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCEE745F7448B03439BDC92BA2C16199 /* PolarBleSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PolarBleSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD76E16D00AA8D50F3B45BDEC879EEEC /* TextFormatEncodingOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextFormatEncodingOptions.swift; path = Sources/SwiftProtobuf/TextFormatEncodingOptions.swift; sourceTree = "<group>"; };
 		CDB12B4DD505E908E2D0F701849D5CD2 /* ExtensionMap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExtensionMap.swift; path = Sources/SwiftProtobuf/ExtensionMap.swift; sourceTree = "<group>"; };
 		CDDC26168C4BA0331E8776DBC7755796 /* BinaryDecodingOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BinaryDecodingOptions.swift; path = Sources/SwiftProtobuf/BinaryDecodingOptions.swift; sourceTree = "<group>"; };
@@ -801,10 +801,10 @@
 		0DD25B8D26A9B0F4D9BE748F09D51092 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BFC478F66C7DB9569C93101B7A8CF611 /* Pods-PolarConnection */,
-				CCEE745F7448B03439BDC92BA2C16199 /* PolarBleSdk */,
-				809C5FAB588354C9BA37DC3EAB8CB45C /* RxSwift */,
-				943D347E61A2E181A4FA2CA894307B6E /* SwiftProtobuf */,
+				BFC478F66C7DB9569C93101B7A8CF611 /* Pods_PolarConnection.framework */,
+				CCEE745F7448B03439BDC92BA2C16199 /* PolarBleSdk.framework */,
+				809C5FAB588354C9BA37DC3EAB8CB45C /* RxSwift.framework */,
+				943D347E61A2E181A4FA2CA894307B6E /* SwiftProtobuf.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -974,7 +974,6 @@
 				8C988ACF9A981AF793644B763B1AE277 /* Zip+Collection.swift */,
 				746B41A0E722E284AEA4A3267B06D066 /* Support Files */,
 			);
-			name = RxSwift;
 			path = RxSwift;
 			sourceTree = "<group>";
 		};
@@ -1068,7 +1067,6 @@
 				C629AF969AF6932BC307874D26B1AC5E /* ZigZag.swift */,
 				63EA7CFE589BBB9FD7EEA4A75CF9CDD6 /* Support Files */,
 			);
-			name = SwiftProtobuf;
 			path = SwiftProtobuf;
 			sourceTree = "<group>";
 		};
@@ -1202,7 +1200,6 @@
 				83F35B47D6E3C2F8579FEA20EDB28291 /* TypeUtils.swift */,
 				FFE9F7BCA3202E659FDDF629879D1841 /* Support Files */,
 			);
-			name = PolarBleSdk;
 			path = PolarBleSdk;
 			sourceTree = "<group>";
 		};
@@ -1330,7 +1327,7 @@
 			);
 			name = PolarBleSdk;
 			productName = PolarBleSdk;
-			productReference = CCEE745F7448B03439BDC92BA2C16199 /* PolarBleSdk */;
+			productReference = CCEE745F7448B03439BDC92BA2C16199 /* PolarBleSdk.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		8FE2DC8CF898C2E343F0063746A63D3E /* Pods-PolarConnection */ = {
@@ -1351,7 +1348,7 @@
 			);
 			name = "Pods-PolarConnection";
 			productName = Pods_PolarConnection;
-			productReference = BFC478F66C7DB9569C93101B7A8CF611 /* Pods-PolarConnection */;
+			productReference = BFC478F66C7DB9569C93101B7A8CF611 /* Pods_PolarConnection.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		A5F702E0DA383BC1479572581615A916 /* SwiftProtobuf */ = {
@@ -1369,7 +1366,7 @@
 			);
 			name = SwiftProtobuf;
 			productName = SwiftProtobuf;
-			productReference = 943D347E61A2E181A4FA2CA894307B6E /* SwiftProtobuf */;
+			productReference = 943D347E61A2E181A4FA2CA894307B6E /* SwiftProtobuf.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		EA9EA43B3B503823EE36C60D9C8A865F /* RxSwift */ = {
@@ -1387,7 +1384,7 @@
 			);
 			name = RxSwift;
 			productName = RxSwift;
-			productReference = 809C5FAB588354C9BA37DC3EAB8CB45C /* RxSwift */;
+			productReference = 809C5FAB588354C9BA37DC3EAB8CB45C /* RxSwift.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */

@@ -35,16 +35,14 @@ class PolarDeviceManager : ObservableObject {
 
 @main
 struct PolarConnection: App {
-    @StateObject var deviceManager = PolarDeviceManager()
+    @ObservedObject var deviceManager = PolarDeviceManager()
     
     var body: some Scene {
         WindowGroup {
             ScrollView {
-                ContentView(deviceId: 1)
-                    .environmentObject(deviceManager.bleSdkManager1)
+                ContentView(deviceId: 1, bleSdkManager: deviceManager.bleSdkManager1)
                     .environmentObject(deviceManager)
-                ContentView(deviceId: 2)
-                    .environmentObject(deviceManager.bleSdkManager2)
+                ContentView(deviceId: 2, bleSdkManager: deviceManager.bleSdkManager2)
                     .environmentObject(deviceManager)
             }
         }

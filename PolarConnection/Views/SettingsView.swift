@@ -5,6 +5,7 @@ import PolarBleSdk
 
 struct SettingsView: View {
     @EnvironmentObject private var bleSdkManager: PolarBleSdkManager
+    //@State var bleSdkManager: PolarBleSdkManager
     let streamedFeature: PolarDeviceDataType
     let streamSettings: RecordingSettings
     var isOfflineSettings: Bool = false
@@ -121,7 +122,7 @@ RecordingSettings( feature: PolarDeviceDataType.ecg,
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(["iPhone 8", "iPAD Pro (12.9-inch)"], id: \.self) { deviceName in
-            SettingsView( streamedFeature:PolarDeviceDataType.ecg, streamSettings: tempStreamSettings)
+            SettingsView(streamedFeature:PolarDeviceDataType.ecg, streamSettings: tempStreamSettings)
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)
                 .environmentObject(PolarBleSdkManager())

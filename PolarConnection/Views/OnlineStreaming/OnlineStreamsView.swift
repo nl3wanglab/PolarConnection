@@ -5,7 +5,8 @@ import SwiftUI
 import PolarBleSdk
 
 struct OnlineStreamsView: View {
-    @EnvironmentObject private var bleSdkManager: PolarBleSdkManager
+    //@EnvironmentObject private var bleSdkManager: PolarBleSdkManager
+    @State var bleSdkManager: PolarBleSdkManager
     @State private var urlToShare: IdentifiableURL?
     
     func isHRData(contents: String) -> Bool {
@@ -13,7 +14,7 @@ struct OnlineStreamsView: View {
         guard let header = lines.first else {
             return false
         }
-        return header == "HR CONTACT_SUPPORTED CONTACT_STATUS RR_AVAILABLE RR(ms)"
+        return header == "HR(BPM) TIME(MS)"
     }
     
     func shareURL(url: URL) {
@@ -24,7 +25,7 @@ struct OnlineStreamsView: View {
         let originalFileName = url.lastPathComponent
 
         // Extract the file extension
-//        let fileExtension = url.pathExtension
+        //let fileExtension = url.pathExtension
 
         // Create the new file name with device ID and original file name
         let newFileName = "\(deviceId)_\(originalFileName)"
@@ -68,7 +69,7 @@ struct OnlineStreamsView: View {
             VStack {
                 ForEach(PolarDeviceDataType.allCases) { dataType in
                     HStack {
-                        OnlineStreamingButton(dataType: dataType)
+                        OnlineStreamingButton(bleSdkManager: bleSdkManager ,dataType: dataType)
                         Spacer()
                         if case let .success(urlOptional) = bleSdkManager.onlineStreamingFeature.isStreaming[dataType],
                            let url = urlOptional {
@@ -108,8 +109,9 @@ struct OnlineStreamsView: View {
 }
 
 struct OnlineStreamingButton: View {
+    @State var bleSdkManager: PolarBleSdkManager
     let dataType: PolarDeviceDataType
-    @EnvironmentObject private var bleSdkManager: PolarBleSdkManager
+    //@EnvironmentObject private var bleSdkManager: PolarBleSdkManager
     
     var body: some View {
         Button(getStreamButtonText(dataType, bleSdkManager.onlineStreamingFeature.isStreaming[dataType]),
@@ -220,7 +222,7 @@ struct OnlineStreamsView_Previews: PreviewProvider {
     }()
     
     static var previews: some View {
-        return OnlineStreamsView()
+        return OnlineStreamsView(bleSdkManager: polarBleSdkManager)
             .environmentObject(polarBleSdkManager)
     }
 }

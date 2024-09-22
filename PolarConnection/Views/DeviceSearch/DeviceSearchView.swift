@@ -5,7 +5,8 @@ import SwiftUI
 import PolarBleSdk
 
 struct DeviceSearchView: View {
-    @EnvironmentObject var bleSdkManager: PolarBleSdkManager
+    //@EnvironmentObject var bleSdkManager: PolarBleSdkManager
+    @State var bleSdkManager: PolarBleSdkManager
     @Binding var isPresented: Bool
     
     private var sortedDevices: [PolarDeviceInfo] {
@@ -95,7 +96,7 @@ struct DeviceSearchView_Previews: PreviewProvider {
     }()
     
     static var previews: some View {
-        DeviceSearchView(isPresented: .constant(true))
+        DeviceSearchView(bleSdkManager: polarBleSdkManager, isPresented: .constant(true))
             .environmentObject(polarBleSdkManager)
     }
 }

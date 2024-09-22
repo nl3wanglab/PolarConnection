@@ -5,6 +5,7 @@ import PolarBleSdk
 
 struct OfflineRecordingEntriesRow: View {
     @EnvironmentObject private var bleSdkManager: PolarBleSdkManager
+    //@State var bleSdkManager: PolarBleSdkManager
     var offlineRecordingEntry: PolarOfflineRecordingEntry
     @State private var isPerformingDelete = false
     

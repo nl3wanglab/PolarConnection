@@ -5,7 +5,8 @@ import SwiftUI
 import PolarBleSdk
 
 struct DeviceSettingsView: View {
-    @EnvironmentObject private var bleSdkManager: PolarBleSdkManager
+    //@EnvironmentObject private var bleSdkManager: PolarBleSdkManager
+    @State var bleSdkManager: PolarBleSdkManager
     @State private var isPerformingTimeSet = false
     @State private var isPerformingTimeGet = false
     @State private var isPerformingDiskSpaceGet = false
@@ -177,7 +178,7 @@ struct DeviceSettingsView_Previews: PreviewProvider {
     
     static var previews: some View {
         ForEach(["iPhone 7 Plus", "iPad Pro (12.9-inch) (6th generation)"], id: \.self) { deviceName in
-            DeviceSettingsView()
+            DeviceSettingsView(bleSdkManager: polarBleSdkManager)
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)
                 .environmentObject(polarBleSdkManager)

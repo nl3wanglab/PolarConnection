@@ -12,13 +12,13 @@ struct OfflineRecordingStartView: View {
             Group {
                 Group {
                     VStack {
-                        OfflineRecStartButton(dataType: .ecg)
-                        OfflineRecStartButton(dataType: .acc)
-                        OfflineRecStartButton(dataType: .gyro)
-                        OfflineRecStartButton(dataType: .magnetometer)
-                        OfflineRecStartButton(dataType: .ppg)
-                        OfflineRecStartButton(dataType: .ppi)
-                        OfflineRecStartButton(dataType: .hr)
+                        OfflineRecStartButton(dataType: .ecg, bleSdkManager: bleSdkManager)
+                        OfflineRecStartButton(dataType: .acc, bleSdkManager: bleSdkManager)
+                        OfflineRecStartButton(dataType: .gyro, bleSdkManager: bleSdkManager)
+                        OfflineRecStartButton(dataType: .magnetometer, bleSdkManager: bleSdkManager)
+                        OfflineRecStartButton(dataType: .ppg, bleSdkManager: bleSdkManager)
+                        OfflineRecStartButton(dataType: .ppi, bleSdkManager: bleSdkManager)
+                        OfflineRecStartButton(dataType: .hr, bleSdkManager: bleSdkManager)
                     }
                 }.fullScreenCover(item: $bleSdkManager.offlineRecordingSettings) { offlineRecSettings in
                     let settings = offlineRecSettings
@@ -35,7 +35,8 @@ struct OfflineRecordingStartView: View {
 
 struct OfflineRecStartButton: View {
     let dataType: PolarDeviceDataType
-    @EnvironmentObject private var bleSdkManager: PolarBleSdkManager
+    //@EnvironmentObject private var bleSdkManager: PolarBleSdkManager
+    @State var bleSdkManager: PolarBleSdkManager
     
     var body: some View {
         Button(getRecButtonText(dataType, bleSdkManager.offlineRecordingFeature.isRecording[dataType]),

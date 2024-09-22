@@ -5,7 +5,8 @@ import SwiftUI
 import PolarBleSdk
 
 struct H10ExerciseView: View {
-    @EnvironmentObject var bleSdkManager: PolarBleSdkManager
+    //@EnvironmentObject var bleSdkManager: PolarBleSdkManager
+    @State var bleSdkManager: PolarBleSdkManager
     
     var body: some View {
         
@@ -101,7 +102,7 @@ struct H10ExerciseView_Previews: PreviewProvider {
     
     static var previews: some View {
         ForEach(["iPhone 7 Plus", "iPad Pro (12.9-inch) (6th generation)"], id: \.self) { deviceName in
-            H10ExerciseView()
+            H10ExerciseView(bleSdkManager: polarBleSdkManager)
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)
                 .environmentObject(polarBleSdkManager)

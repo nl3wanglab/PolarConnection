@@ -10,7 +10,8 @@ enum OfflineRecOptions: String, CaseIterable {
 }
 
 struct OfflineRecordingView: View {
-    @EnvironmentObject private var bleSdkManager: PolarBleSdkManager
+    //@EnvironmentObject private var bleSdkManager: PolarBleSdkManager
+    @State var bleSdkManager: PolarBleSdkManager
     @State private var selectedTab: OfflineRecOptions = .start
     
     var body: some View {
@@ -69,7 +70,7 @@ struct OfflineRecordingView_Previews: PreviewProvider {
     }()
     
     static var previews: some View {
-        return OfflineRecordingView()
+        return OfflineRecordingView(bleSdkManager: polarBleSdkManager)
             .environmentObject(polarBleSdkManager)
     }
 }
