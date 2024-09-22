@@ -399,10 +399,22 @@ class PolarBleSdkManager : ObservableObject {
                     }
                 case .hrOfflineRecordingData(let data, startTime: let startTime):
                     NSLog("HR data received")
+                    
                     Task { @MainActor in
+                        let updatedData: PolarHrData = data.enumerated().map { index, entry in
+                            (
+                                hr: entry.hr,
+                                rrsMs: entry.rrsMs,
+                                rrAvailable: entry.rrAvailable,
+                                contactStatus: entry.contactStatus,
+                                contactStatusSupported: entry.contactStatusSupported,
+                                timeDifference: index + 1
+                            )
+                        }
+                        
                         self.offlineRecordingData.startTime = startTime
                         self.offlineRecordingData.usedSettings = nil
-                        self.offlineRecordingData.data = dataHeaderString(.hr) + dataToString(data)
+                        self.offlineRecordingData.data = dataHeaderString(.hr) + dataToString(updatedData)
                         self.offlineRecordingData.dataSize = offlineRecordingEntry.size
                         self.offlineRecordingData.downLoadTime = elapsedTime
                     }
